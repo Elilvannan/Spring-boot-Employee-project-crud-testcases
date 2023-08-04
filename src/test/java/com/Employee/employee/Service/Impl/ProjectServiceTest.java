@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,9 +56,13 @@ class ProjectServiceTest {
 
     @Test
     void deleteById() {
-        EmployeeModel employeeModel1= new EmployeeModel(1,"elil",25,"batticaloa","elil@gmail.com","ICT");
-        ProjectModel projectModel = new ProjectModel(1,"html",employeeModel1);
-        long id=1;
+        long idToDelete = 1L;
+
+        // Act
+        projectService.deleteById(idToDelete);
+
+        // Assert
+        verify(projectRepository, times(1)).deleteById(idToDelete);
 
     }
 }
